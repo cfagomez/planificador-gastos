@@ -1,9 +1,7 @@
 import React from 'react'
 import Error from './Error'
 
-const NuevoPresupuesto = ({presupuesto, setPresupuesto, setPresupuestoValido}) => {
-
-  const [mensaje, setMensaje] = React.useState(null)
+const NuevoPresupuesto = ({presupuesto, setPresupuesto, setPresupuestoValido, setMensaje, mensaje}) => {
 
   const validarFormulario = (e) => {
 
