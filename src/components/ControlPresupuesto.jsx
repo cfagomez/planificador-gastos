@@ -1,11 +1,36 @@
 import React from 'react'
 
-const ControlPresupuesto = ({presupuesto}) => {
+const ControlPresupuesto = ({presupuesto, listaGastos}) => {
+
+    const [disponible, setDisponible] = React.useState(presupuesto)
+    const [gastado, setGastado] = React.useState('')
+    const [porcentajeGastado, setPorcentajeGastado] = React.useState(0)
+
+    React.useEffect(() => {
+
+        const totalGastado = listaGastos.reduce((total, gasto) => 
+
+            gasto.cantidad + total, 0
+
+        )
+
+        const nuevoPorcentaje = ((totalGastado / presupuesto) * 100).toFixed(2)
+
+        setGastado(totalGastado)
+        setPorcentajeGastado(nuevoPorcentaje)
+
+    }, [listaGastos])
+
+    React.useEffect(() => {
+
+        setDisponible(presupuesto - gastado)
+
+    }, [gastado])
 
   return (
     <div className='flex pt-10 shadow-lg rounded-lg bg-gray-200 mt-10 justify-around px-5 py-10'>
-        <div>
-            <p>Grafico de Progreso</p>
+        <div className='text-center my-auto border-black border-8 rounded-lg p-20 bg-black '>
+            <p className='text-5xl text-white font-bold'>{porcentajeGastado}%</p>
         </div>
         <div className='text-left text-xl'>
             <button className='bg-black w-full p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-2 mb-5'>Resetear App</button>
@@ -13,10 +38,10 @@ const ControlPresupuesto = ({presupuesto}) => {
                 <span>Presupuesto: ${presupuesto}</span>
             </p>
             <p className='py-3'>
-                <span>Disponible:</span>
+                <span>Disponible: ${disponible}</span>
             </p>
             <p className='py-3'>
-                <span>Gastado:</span>
+                <span>Gastado: ${gastado}</span>
             </p>
         </div>
     </div>

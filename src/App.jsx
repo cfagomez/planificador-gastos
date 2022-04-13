@@ -11,6 +11,7 @@ function App() {
   const [mensaje, setMensaje] = React.useState(null)
   const [modalOn, setModalOn] = React.useState(false)
   const [listaGastos, setListaGastos] = React.useState([])
+  const [gastoAEditar, setGastoAEditar] = React.useState({})
 
   const guardarGasto = (gasto) => {
 
@@ -32,6 +33,10 @@ function App() {
             mensaje={mensaje}
             setMensaje={setMensaje}
             guardarGasto={guardarGasto}
+            gastoAEditar={gastoAEditar}
+            setGastoAEditar={setGastoAEditar}
+            listaGastos={listaGastos}
+            setListaGastos={setListaGastos}
           />
 
         ) : (
@@ -43,6 +48,7 @@ function App() {
             setPresupuestoValido={setPresupuestoValido}
             setMensaje={setMensaje}
             mensaje={mensaje}
+            listaGastos={listaGastos}
           />
           
         )
@@ -53,6 +59,10 @@ function App() {
         presupuestoValido ? (
           <ListadoGastos
             listaGastos={listaGastos}
+            setGastoAEditar={setGastoAEditar}
+            setModalOn={setModalOn}
+            gastoAEditar={gastoAEditar}
+            setListaGastos={setListaGastos}
           />
         ) : (
           null

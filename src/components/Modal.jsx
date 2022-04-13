@@ -1,11 +1,23 @@
 import React from 'react'
 import Error from './Error'
 
-const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto}) => {
+const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto, gastoAEditar, setGastoAEditar, listaGastos, setListaGastos}) => {
 
     const [nombreGasto, setNombreGasto] = React.useState('')
     const [cantidad, setCantidad] = React.useState('')
     const [categoria, setCategoria] = React.useState('')
+
+    React.useEffect(() => {
+
+        if (Object.keys(gastoAEditar).length > 0) {
+
+            setNombreGasto(gastoAEditar.nombre)
+            setCantidad(gastoAEditar.cantidad)
+            setCategoria(gastoAEditar.categoria)
+
+        }
+
+    }, [gastoAEditar])
 
     const cancelarNuevoGasto = () => {
 
@@ -13,6 +25,7 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto}) => {
         setCantidad('')
         setCategoria('')
         setModalOn(false)
+        setGastoAEditar({})
 
     }
 
@@ -28,8 +41,16 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto}) => {
 
         }
 
-        setMensaje(null)
-        setModalOn(false)
+        const editarGasto = () => {
+
+            const listaGastosEditada = listaGastos.map( gastoItem => gastoItem.id === gastoAEditar.id ? gasto : gastoItem )
+
+            gasto.id = gastoAEditar.id
+            gasto.fecha = gastoAEditar.fecha
+    
+            setListaGastos(listaGastosEditada)
+    
+        }
 
         const gasto = {
             nombreGasto,
@@ -37,7 +58,20 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto}) => {
             categoria
         }
 
-        guardarGasto(gasto)
+
+        if (Object.keys(gastoAEditar).length > 0) {
+
+            editarGasto()
+
+        } else {
+
+            guardarGasto(gasto)
+
+        }
+
+        setMensaje(null)
+        setModalOn(false)
+        setGastoAEditar('')
 
     }
 
@@ -113,12 +147,19 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto}) => {
             </div>
             <input 
                 type="submit"
-                value="Añadir Gasto"
+                value={
+                    (Object.keys(gastoAEditar).length > 0) ? (
+                        'Editar Gasto'
+                    ) : (
+                        'Añadir Gasto'
+                    )
+                }
                 className='bg-black w-full p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-5'
             />
             <button
                 className='bg-black w-full p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-2'
                 onClick={() => cancelarNuevoGasto()}
+                type='button'
             >
                 Cancelar
             </button>

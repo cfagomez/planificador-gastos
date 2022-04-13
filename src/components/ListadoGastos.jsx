@@ -1,7 +1,7 @@
 import React from 'react'
 import Gasto from './Gasto'
 
-const ListadoGastos = ({listaGastos}) => {
+const ListadoGastos = ({listaGastos, setGastoAEditar, gastoAEditar, setModalOn, setListaGastos}) => {
   return (
     <div className='text-start md:w-2/3 mx-auto text-black pt-10'>
         <h2 className='text-3xl'>Lista de Gastos</h2>
@@ -12,6 +12,13 @@ const ListadoGastos = ({listaGastos}) => {
                         cantidad={gasto.cantidad}
                         categoria={gasto.categoria}
                         fecha={gasto.fecha}
+                        id={gasto.id}
+                        key={gasto.id}
+                        setGastoAEditar={setGastoAEditar}
+                        setModalOn={setModalOn}
+                        gastoAEditar={gastoAEditar}
+                        listaGastos={listaGastos}
+                        setListaGastos={setListaGastos}
                        />
                     ))
         }

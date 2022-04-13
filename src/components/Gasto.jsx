@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Gasto = ({nombre, cantidad, categoria, fecha}) => {
+const Gasto = ({nombre, cantidad, categoria, fecha, id, gastoAEditar, setGastoAEditar, setModalOn, listaGastos, setListaGastos}) => {
 
     const formatearFecha = fecha => {
 
@@ -12,6 +12,29 @@ const Gasto = ({nombre, cantidad, categoria, fecha}) => {
         }
 
         return fechaNueva.toLocaleDateString('es-ES', opciones)
+
+    }
+
+    const activarModoEdicionGasto = () => {
+
+        const objetoGastoAEditar = {
+            nombre,
+            cantidad,
+            categoria,
+            fecha,
+            id
+        }
+
+        setModalOn(true)
+        setGastoAEditar(objetoGastoAEditar)
+
+    }
+
+    const eliminarGasto = () => {
+
+        const listaGastosActualizada = listaGastos.filter( gasto => gasto.id !== id)
+
+        setListaGastos(listaGastosActualizada)
 
     }
 
@@ -29,6 +52,21 @@ const Gasto = ({nombre, cantidad, categoria, fecha}) => {
         <p className='text-xl text-black'>
             Agregado: {formatearFecha(fecha)}
         </p>
+        <div className='mt-10'>
+            <button
+                className='bg-black p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-2 mb-5 block w-full'
+                onClick={() => activarModoEdicionGasto()}
+            >
+                Editar
+            </button>
+            <button
+                className='bg-black p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-2 mb-5 block w-full'
+                onClick={() => eliminarGasto()}
+            >
+                Eliminar
+            </button>
+        </div>
+        
     </div>
   )
 }
