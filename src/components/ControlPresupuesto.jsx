@@ -29,7 +29,7 @@ const ControlPresupuesto = ({presupuesto, listaGastos}) => {
 
   return (
     <div className='flex pt-10 shadow-lg rounded-lg bg-gray-200 mt-10 justify-around px-5 py-10'>
-        <div className='text-center my-auto border-black border-8 rounded-lg p-20 bg-black '>
+        <div className='text-center my-auto border-black border-8 rounded-lg p-20 bg-black'>
             <p className='text-5xl text-white font-bold'>{porcentajeGastado}%</p>
         </div>
         <div className='text-left text-xl'>

@@ -26,6 +26,7 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto, gastoAEditar, set
         setCategoria('')
         setModalOn(false)
         setGastoAEditar({})
+        setMensaje(null)
 
     }
 

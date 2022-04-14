@@ -6,12 +6,18 @@ import ListadoGastos from './components/ListadoGastos'
 
 function App() {
 
-  const [presupuesto, setPresupuesto] = React.useState(Number(0))
+  const [presupuesto, setPresupuesto] = React.useState(Number((localStorage.getItem ? JSON.parse(localStorage.getItem('presupuesto')) : (0))))
   const [presupuestoValido, setPresupuestoValido] = React.useState(false)
   const [mensaje, setMensaje] = React.useState(null)
   const [modalOn, setModalOn] = React.useState(false)
-  const [listaGastos, setListaGastos] = React.useState([])
+  const [listaGastos, setListaGastos] = React.useState(localStorage.getItem('lista gastos') ? JSON.parse(localStorage.getItem('lista gastos')) : [])
   const [gastoAEditar, setGastoAEditar] = React.useState({})
+
+  React.useEffect(() => {
+
+    localStorage.setItem('lista gastos', JSON.stringify(listaGastos) ?? 0)
+
+  }, [listaGastos])
 
   const guardarGasto = (gasto) => {
 
