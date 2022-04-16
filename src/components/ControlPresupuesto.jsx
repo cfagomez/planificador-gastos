@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ControlPresupuesto = ({presupuesto, listaGastos}) => {
+const ControlPresupuesto = ({presupuesto, listaGastos, setPresupuesto, setListaGastos, setPresupuestoValido}) => {
 
     const [disponible, setDisponible] = React.useState(presupuesto)
     const [gastado, setGastado] = React.useState('')
@@ -27,13 +27,28 @@ const ControlPresupuesto = ({presupuesto, listaGastos}) => {
 
     }, [gastado])
 
+    const resetApp = () => {
+
+        if (window.confirm("¿Quieres resetear la App?")) {
+
+            setPresupuesto(0)
+            setListaGastos([])
+            setPresupuestoValido(false)
+
+        }
+        
+    }
+
   return (
-    <div className='flex pt-10 shadow-lg rounded-lg bg-gray-200 mt-10 justify-around px-5 py-10'>
-        <div className='text-center my-auto border-black border-8 rounded-lg p-20 bg-black'>
-            <p className='text-5xl text-white font-bold'>{porcentajeGastado}%</p>
+    <div className='flex pt-10 shadow-lg rounded-lg bg-gray-900 mt-10 justify-around px-5 py-10'>
+        <div className='text-center my-auto border-4 border-indigo-700 rounded-lg p-20'>
+            <p className='text-5xl text-amber-200 font-bold'>{porcentajeGastado}%</p>
         </div>
-        <div className='text-left text-xl'>
-            <button className='bg-black w-full p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-2 mb-5'>Resetear App</button>
+        <div className='text-left text-xl text-amber-200'>
+            <button 
+                className='bg-red-700 w-full p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-2 mb-5'
+                onClick={() => resetApp()}
+            >Resetear App</button>
             <p className='py-3'>
                 <span>Presupuesto: ${presupuesto}</span>
             </p>

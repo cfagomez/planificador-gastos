@@ -42,7 +42,7 @@ function App() {
   }, [filtro])
 
   return (
-    <div className='container mx-auto mt-20'>
+    <div className='container mx-auto mt-20 pb-5'>
       {
 
         modalOn ? (
@@ -68,10 +68,28 @@ function App() {
             setMensaje={setMensaje}
             mensaje={mensaje}
             listaGastos={listaGastos}
+            setListaGastos={setListaGastos}
           />
           
         )
 
+      }
+
+      {
+        presupuestoValido && !modalOn ? (
+
+          <div className='text-center mx-auto mt-5'>
+            <button 
+              className='bg-indigo-700 p-3 text-amber-200 uppercase font-bold cursor-pointer rounded-md transition-all mt-2 mb-5'
+              onClick={() => setModalOn(true)}
+            >
+              Nuevo Gasto
+            </button>
+          </div>
+
+        ) : (
+          null
+        )
       }
 
       {
@@ -91,22 +109,6 @@ function App() {
         )
       }
       
-      {
-        presupuestoValido && !modalOn ? (
-
-          <div className='text-center mx-auto mt-5'>
-            <button 
-              className='bg-black p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-2 mb-5'
-              onClick={() => setModalOn(true)}
-            >
-              Nuevo Gasto
-            </button>
-          </div>
-
-        ) : (
-          null
-        )
-      }
     </div>
   )
 }

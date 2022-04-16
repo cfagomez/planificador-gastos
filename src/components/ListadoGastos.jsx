@@ -4,8 +4,16 @@ import Gasto from './Gasto'
 
 const ListadoGastos = ({listaGastos, setGastoAEditar, gastoAEditar, setModalOn, setListaGastos, filtro, setFiltro, gastosFiltrados}) => {
   return (
-    <div className='text-start md:w-2/3 mx-auto text-black pt-10'>
-        <h2 className='text-3xl'>Lista de Gastos</h2>
+    <div className='text-start md:w-2/3 mx-auto text-amber-200'>
+        <h2 className='text-3xl'>
+          {
+            listaGastos.length > 0 ? (
+              'Lista de Gastos'
+            ) : (
+              'No hay Gastos'
+            )
+          }
+        </h2>
         {
           listaGastos.length > 0 ? (
             <Filtro 
@@ -23,7 +31,7 @@ const ListadoGastos = ({listaGastos, setGastoAEditar, gastoAEditar, setModalOn, 
 
             <>
 
-            <h2 className='text-3xl text-black'>
+            <h2 className='text-3xl text-amber-200'>
               {
                 gastosFiltrados.length > 0 ? (
                   null

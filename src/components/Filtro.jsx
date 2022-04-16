@@ -3,10 +3,10 @@ import React from 'react'
 const Filtro = ({filtro, setFiltro}) => {
 
   return (
-    <div className='mt-5 mb-5'>
+    <div className='mt-5 mb-5 text-black'>
       <select
         id='categoria'
-        className='border-2 w-full p-2 mt-2 rounded-lg border-black text-center'
+        className='border-2 w-full p-2 mt-2 rounded-lg text-center'
         value={filtro}
         onChange={(e) => setFiltro(e.target.value)}
       >

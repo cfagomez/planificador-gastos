@@ -2,7 +2,7 @@ import React from 'react'
 import ControlPresupuesto from './ControlPresupuesto'
 import NuevoPresupuesto from './NuevoPresupuesto'
 
-const Header = ({setPresupuesto, presupuesto, presupuestoValido, setPresupuestoValido, setMensaje, mensaje, listaGastos}) => {
+const Header = ({setPresupuesto, presupuesto, presupuestoValido, setPresupuestoValido, setMensaje, mensaje, listaGastos, setListaGastos}) => {
 
   React.useEffect(() => {
 
@@ -17,13 +17,16 @@ const Header = ({setPresupuesto, presupuesto, presupuestoValido, setPresupuestoV
   }, [])
 
   return (
-    <header className='text-center md:w-2/3 mx-auto text-black pt-10'>
+    <header className='text-center md:w-2/3 mx-auto text-amber-200 pt-10'>
       <h1 className='text-5xl'>Planificador de Gastos</h1>
       {
         presupuestoValido ? (
           <ControlPresupuesto
             presupuesto={presupuesto}
             listaGastos={listaGastos}
+            setPresupuesto={setPresupuesto}
+            setPresupuestoValido={setPresupuestoValido}
+            setListaGastos={setListaGastos}
           />
         ) : (
           <NuevoPresupuesto 

@@ -77,10 +77,10 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto, gastoAEditar, set
     }
 
   return (
-    <div className='text-center md:w-2/3 mx-auto text-black pt-10'>
-        <h1 className='text-5xl mb-10'>Nuevo Gasto</h1>
+    <div className='text-center md:w-2/3 mx-auto pt-10'>
+        <h1 className='text-5xl mb-10 text-amber-200'>Nuevo Gasto</h1>
         <form
-            className='bg-white shadow-lg rounded-lg py-10 px-5 mb-10'
+            className='bg-gray-900 shadow-lg rounded-lg py-10 px-5 mb-10'
             onSubmit={validarFormulario}
         >
             {
@@ -97,14 +97,14 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto, gastoAEditar, set
             <div>
                 <label 
                     htmlFor="nombre"
-                    className='block text-black font-bold text-2xl my-3 text-left'
+                    className='block text-amber-200 font-bold text-2xl my-3 text-left'
                 >   
                     Nombre Gasto
                 </label>
                 <input
                     id='nombre'
                     type="text"
-                    className='border-2 w-full p-2 mt-2 rounded-lg border-black text-center'
+                    className='border-2 w-full p-2 mt-2 rounded-lg border-indigo-700 text-center'
                     value={nombreGasto}
                     onChange={(e) => setNombreGasto(e.target.value)}
                 />
@@ -112,14 +112,14 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto, gastoAEditar, set
             <div>
                 <label 
                     htmlFor="cantidad"
-                    className='block text-black font-bold text-2xl my-3 text-left'
+                    className='block text-amber-200 font-bold text-2xl my-3 text-left'
                 >
                     Cantidad
                 </label>
                 <input
                     id='cantidad'
                     type="text"
-                    className='border-2 w-full p-2 mt-2 rounded-lg border-black text-center'
+                    className='border-2 w-full p-2 mt-2 rounded-lg border-indigo-700 text-center'
                     value={cantidad}
                     onChange={(e) => setCantidad(Number(e.target.value))}
                 />
@@ -127,13 +127,13 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto, gastoAEditar, set
             <div>
                 <label 
                     htmlFor="categoria"
-                    className='block text-black font-bold text-2xl my-3 text-left'
+                    className='block text-amber-200 font-bold text-2xl my-3 text-left'
                 >
                     Categoria
                 </label>
                 <select
                     id='categoria'
-                    className='border-2 w-full p-2 mt-2 rounded-lg border-black text-center'
+                    className='border-2 w-full p-2 mt-2 rounded-lg border-indigo-700 text-center'
                     value={categoria}
                     onChange={(e) => setCategoria(e.target.value)}
                 >
@@ -155,10 +155,10 @@ const Modal = ({setModalOn, mensaje, setMensaje, guardarGasto, gastoAEditar, set
                         'Añadir Gasto'
                     )
                 }
-                className='bg-black w-full p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-5'
+                className='bg-indigo-700 w-full p-3 text-amber-200 uppercase font-bold cursor-pointer rounded-md transition-all mt-5'
             />
             <button
-                className='bg-black w-full p-3 text-white uppercase font-bold cursor-pointer rounded-md transition-all mt-2'
+                className='bg-indigo-700 w-full p-3 text-amber-200 uppercase font-bold cursor-pointer rounded-md transition-all mt-2'
                 onClick={() => cancelarNuevoGasto()}
                 type='button'
             >
