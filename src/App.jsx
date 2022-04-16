@@ -12,6 +12,8 @@ function App() {
   const [modalOn, setModalOn] = React.useState(false)
   const [listaGastos, setListaGastos] = React.useState(localStorage.getItem('lista gastos') ? JSON.parse(localStorage.getItem('lista gastos')) : [])
   const [gastoAEditar, setGastoAEditar] = React.useState({})
+  const [filtro, setFiltro] = React.useState('')
+  const [gastosFiltrados, setGastosFiltrados] = React.useState([])
 
   React.useEffect(() => {
 
@@ -27,6 +29,17 @@ function App() {
     setListaGastos([...listaGastos, gasto])
 
   }
+
+  React.useEffect(() => {
+
+    if (filtro) {
+
+      const listaGastosFiltrada = listaGastos.filter( gastoItem => gastoItem.categoria === filtro)
+      setGastosFiltrados(listaGastosFiltrada)      
+
+    }
+
+  }, [filtro])
 
   return (
     <div className='container mx-auto mt-20'>
@@ -69,6 +82,9 @@ function App() {
             setModalOn={setModalOn}
             gastoAEditar={gastoAEditar}
             setListaGastos={setListaGastos}
+            filtro={filtro}
+            setFiltro={setFiltro}
+            gastosFiltrados={gastosFiltrados}
           />
         ) : (
           null
